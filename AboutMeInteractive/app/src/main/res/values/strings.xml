@@ -1,0 +1,35 @@
+<!--
+  ~ Copyright (C) 2018 Google Inc.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">AboutMe</string>
+    <string name="name">Emmanuel!</string>
+    <string name="yellow_star">Yellow star</string>
+    <string name="bio">Hi, my name is Emmanuel.
+        \nA long time ago, in a galaxy far, far, away...
+        \n\nSTAR WARS: Episode I
+        \nThe PHANTOM MENACE
+        \n\nTurmoil has engulfed the Galactic Republic.
+        \nThe taxation of trade routes to outlying star systems is in dispute.
+        \nHoping to resolve the matter with a blockade of deadly battleships,
+        the greedy Trade Federation has stopped all shipping to the small planet of Naboo.
+        \nWhile the congress of the Republic endlessly debates this alarming chain of events,
+        the Supreme Chancellor has secretly dispatched two Jedi Knights,
+        the guardians of peace and justice in the galaxy, to settle the conflict..."
+    </string>
+    <string name="what_is_your_nickname">What is your Nickname?</string>
+    <string name="done">Done</string>
+</resources>
