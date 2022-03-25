@@ -37,6 +37,7 @@ class GameFragment : Fragment() {
 
     private lateinit var binding: GameFragmentBinding
     private lateinit var viewModel: GameViewModel
+    private lateinit var viewModelFactory: GameViewModel.GameViewModelFactory
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -50,8 +51,13 @@ class GameFragment : Fragment() {
             false
         )
 
+        //Timer - modified from ScoreFragment
+        viewModelFactory = GameViewModel.GameViewModelFactory(GameFragmentArgs.fromBundle(requireArguments()).stopwatch)
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(GameViewModel::class.java)
+        //No Observer for timer because only set on ViewModel creation
         Log.i("GameFragment", "Called ViewModelProvider.get")
-        viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
         /** Setting up LiveData observation relationship **/
 

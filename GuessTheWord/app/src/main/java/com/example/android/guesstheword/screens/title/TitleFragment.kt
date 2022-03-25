@@ -22,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.android.guesstheword.R
 import com.example.android.guesstheword.databinding.TitleFragmentBinding
@@ -30,6 +31,7 @@ import com.example.android.guesstheword.databinding.TitleFragmentBinding
  * Fragment for the starting or title screen of the app
  */
 class TitleFragment : Fragment() {
+    private var time : Long = 60000L //60s = 60,000L
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -40,6 +42,21 @@ class TitleFragment : Fragment() {
         binding.playGameButton.setOnClickListener {
             findNavController().navigate(TitleFragmentDirections.actionTitleToGame())
         }
+
+        //timer setup
+        binding.timerSlider.addOnChangeListener { slider, value, fromUser -> //hmmm - is this how data is passed?
+            // Responds to when slider's value is changed
+            time = value.toLong() * 1000L
+        }
+
+        timerSetup()//hmmm - could this be called before user changes time?
         return binding.root
+    }
+
+    //Timer - modified from GameFragment
+    private fun timerSetup() {
+        val action = TitleFragmentDirections.actionTitleToGame()
+        action.stopwatch = time //hmmm - is this how data is passed?
+        NavHostFragment.findNavController(this).navigate(action)
     }
 }

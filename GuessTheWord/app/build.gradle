@@ -55,6 +55,8 @@ dependencies {
     // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
-
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+
+    // Slider
+    implementation 'com.google.android.material:material:1.5.0'
 }

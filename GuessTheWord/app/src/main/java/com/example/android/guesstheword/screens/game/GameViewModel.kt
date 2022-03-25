@@ -3,12 +3,9 @@ package com.example.android.guesstheword.screens.game
 import android.os.CountDownTimer
 import android.text.format.DateUtils
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 
-class GameViewModel : ViewModel() {
+class GameViewModel(countdown: Long) : ViewModel() {
     // The current word
     private val _word = MutableLiveData<String>()
     val word: LiveData<String>
@@ -39,9 +36,13 @@ class GameViewModel : ViewModel() {
         DateUtils.formatElapsedTime(time)
     }
 
+    //Timer setup - so TitleFrag can access & set?? stopwatch
+    private val _countdown = MutableLiveData<Long>()
+    val stopwatch: LiveData<Long>
+        get() = _countdown
+
 
     companion object {
-
         // Time when the game is over
         private const val DONE = 0L
 
@@ -49,8 +50,7 @@ class GameViewModel : ViewModel() {
         private const val ONE_SECOND = 1000L
 
         // Total time for the game
-        private const val COUNTDOWN_TIME = 60000L
-
+        //private val defaultCountdown = 60000L //TO BE SET BY USER; 60s = 60,000L
     }
 
     // The Hint for the current word
@@ -95,16 +95,16 @@ class GameViewModel : ViewModel() {
     init {
         _word.value = ""
         _score.value = 0
+        _countdown.value = countdown
         resetList()
         nextWord()
         Log.i("GameViewModel", "GameViewModel created!")
 
         // Creates a timer which triggers the end of the game when it finishes
-        timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
+        timer = object : CountDownTimer(_countdown.value!!, ONE_SECOND) {
 
             override fun onTick(millisUntilFinished: Long) {
                 _currentTime.value = millisUntilFinished/ONE_SECOND
-
             }
 
             override fun onFinish() {
@@ -154,5 +154,15 @@ class GameViewModel : ViewModel() {
     /** Method for the game completed event **/
     fun onGameFinishComplete() {
         _eventGameFinish.value = false
+    }
+
+    //Timer setup - Modified from ScoreViewModel;receives data from TitleFragment
+    class GameViewModelFactory(private val countdown: Long) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(GameViewModel::class.java)) {
+                return GameViewModel(countdown) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
     }
 }
