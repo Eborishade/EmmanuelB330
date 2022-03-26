@@ -22,6 +22,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -53,6 +54,7 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(GameViewModel::class.java)
         Log.i("GameFragment", "Called ViewModelProvider.get")
 
+        timerCheck()
         /** Setting up LiveData observation relationship **/
 
         // Observer for the Game finished event
@@ -87,5 +89,11 @@ class GameFragment : Fragment() {
         action.score = viewModel.score.value?:0
         NavHostFragment.findNavController(this).navigate(action)
         viewModel.onGameFinishComplete()
+    }
+
+    private fun timerCheck(){
+        if (viewModel.timerEnabled()){
+            binding.timerText.isVisible = true
+        }
     }
 }

@@ -26,6 +26,7 @@ class GameViewModel(countdown: Long) : ViewModel() {
 
 
     private val timer: CountDownTimer
+    private var timerEnabled: Boolean
     // Countdown time
     private val _currentTime = MutableLiveData<Long>()
     val currentTime: LiveData<Long>
@@ -90,6 +91,7 @@ class GameViewModel(countdown: Long) : ViewModel() {
     init {
         _word.value = ""
         _score.value = 0
+        timerEnabled = false
         resetList()
         nextWord()
         Log.i("GameViewModel", "GameViewModel created!")
@@ -108,6 +110,7 @@ class GameViewModel(countdown: Long) : ViewModel() {
         }
 
         if (countdown > 0 ){
+            timerEnabled = true
             timer.start()
         }
     }
@@ -150,6 +153,10 @@ class GameViewModel(countdown: Long) : ViewModel() {
     /** Method for the game completed event **/
     fun onGameFinishComplete() {
         _eventGameFinish.value = false
+    }
+
+    fun timerEnabled(): Boolean {
+        return timerEnabled
     }
 
     //Timer setup - Modified from ScoreViewModel;receives data from TitleFragment

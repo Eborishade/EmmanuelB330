@@ -60,13 +60,13 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <!-- Continuous slider -->
-
         <com.google.android.material.slider.Slider
             android:id="@+id/timer_slider"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:valueFrom="10"
             android:valueTo="360"
+            android:stepSize="10.0"
             android:value="60"
             app:layout_constraintBottom_toTopOf="@+id/play_game_button"
             app:layout_constraintEnd_toEndOf="parent"
