@@ -86,5 +86,14 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="TextContrastCheck" />
 
+        <Switch
+            android:id="@+id/timer_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/switch_label"
+            app:layout_constraintBottom_toTopOf="@+id/timer_slider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

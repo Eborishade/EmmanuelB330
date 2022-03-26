@@ -22,10 +22,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.android.guesstheword.R
 import com.example.android.guesstheword.databinding.TitleFragmentBinding
+
 
 /**
  * Fragment for the starting or title screen of the app
@@ -39,9 +39,10 @@ class TitleFragment : Fragment() {
         val binding: TitleFragmentBinding = DataBindingUtil.inflate(
                 inflater, R.layout.title_fragment, container, false)
 
-        binding.playGameButton.setOnClickListener {
-            findNavController().navigate(TitleFragmentDirections.actionTitleToGame())
-        }
+
+        // initiate a Switch
+        val simpleSwitch = binding.timerSwitch
+        val switchState = simpleSwitch.isChecked
 
         //timer setup
         binding.timerSlider.addOnChangeListener { slider, value, fromUser -> //hmmm - is this how data is passed?
@@ -49,14 +50,16 @@ class TitleFragment : Fragment() {
             time = value.toLong() * 1000L
         }
 
-        timerSetup()//hmmm - could this be called before user changes time?
+        binding.playGameButton.setOnClickListener {
+            //findNavController().navigate(TitleFragmentDirections.actionTitleToGame())
+            var gameTimer : Long = 0
+            if (switchState){gameTimer = time}
+
+            val action = TitleFragmentDirections.actionTitleToGame(gameTimer)
+            findNavController().navigate(action)
+        }
+
         return binding.root
     }
 
-    //Timer - modified from GameFragment
-    private fun timerSetup() {
-        val action = TitleFragmentDirections.actionTitleToGame()
-        action.stopwatch = time //hmmm - is this how data is passed?
-        NavHostFragment.findNavController(this).navigate(action)
-    }
 }

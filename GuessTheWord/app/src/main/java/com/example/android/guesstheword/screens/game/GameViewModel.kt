@@ -36,11 +36,6 @@ class GameViewModel(countdown: Long) : ViewModel() {
         DateUtils.formatElapsedTime(time)
     }
 
-    //Timer setup - so TitleFrag can access & set?? stopwatch
-    private val _countdown = MutableLiveData<Long>()
-    val stopwatch: LiveData<Long>
-        get() = _countdown
-
 
     companion object {
         // Time when the game is over
@@ -95,13 +90,12 @@ class GameViewModel(countdown: Long) : ViewModel() {
     init {
         _word.value = ""
         _score.value = 0
-        _countdown.value = countdown
         resetList()
         nextWord()
         Log.i("GameViewModel", "GameViewModel created!")
 
         // Creates a timer which triggers the end of the game when it finishes
-        timer = object : CountDownTimer(_countdown.value!!, ONE_SECOND) {
+        timer = object : CountDownTimer(countdown, ONE_SECOND) {
 
             override fun onTick(millisUntilFinished: Long) {
                 _currentTime.value = millisUntilFinished/ONE_SECOND
@@ -113,7 +107,9 @@ class GameViewModel(countdown: Long) : ViewModel() {
             }
         }
 
-        timer.start()
+        if (countdown > 0 ){
+            timer.start()
+        }
     }
 
 

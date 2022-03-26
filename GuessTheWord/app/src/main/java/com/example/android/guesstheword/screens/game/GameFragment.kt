@@ -27,6 +27,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.navArgs
 import com.example.android.guesstheword.R
 import com.example.android.guesstheword.databinding.GameFragmentBinding
 
@@ -44,20 +45,13 @@ class GameFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
 
         // Inflate view and obtain an instance of the binding class
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.game_fragment,
-            container,
-            false
-        )
+        binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment,
+            container,false)
 
         //Timer - modified from ScoreFragment
         viewModelFactory = GameViewModel.GameViewModelFactory(GameFragmentArgs.fromBundle(requireArguments()).stopwatch)
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(GameViewModel::class.java)
-        //No Observer for timer because only set on ViewModel creation
+        viewModel = ViewModelProvider(this, viewModelFactory).get(GameViewModel::class.java)
         Log.i("GameFragment", "Called ViewModelProvider.get")
-        //viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
         /** Setting up LiveData observation relationship **/
 
