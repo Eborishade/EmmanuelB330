@@ -93,7 +93,7 @@ class GameFragment : Fragment() {
 
     private fun timerCheck(){
         if (viewModel.timerEnabled()){
-            binding.timerText.isVisible = true
+            binding.timerText.visibility = View.VISIBLE
         }
     }
 }

@@ -42,7 +42,6 @@ class TitleFragment : Fragment() {
 
         // initiate a Switch
         val simpleSwitch = binding.timerSwitch
-        val switchState = simpleSwitch.isChecked
 
         //timer setup
         binding.timerSlider.addOnChangeListener { slider, value, fromUser -> //hmmm - is this how data is passed?
@@ -51,7 +50,7 @@ class TitleFragment : Fragment() {
         }
 
         binding.playGameButton.setOnClickListener {
-            //findNavController().navigate(TitleFragmentDirections.actionTitleToGame())
+            val switchState = simpleSwitch.isChecked
             var gameTimer : Long = 0
             if (switchState){gameTimer = time}
 

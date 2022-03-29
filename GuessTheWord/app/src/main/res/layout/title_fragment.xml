@@ -90,6 +90,7 @@
             android:id="@+id/timer_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="@string/switch_label"
             app:layout_constraintBottom_toTopOf="@+id/timer_slider"
             app:layout_constraintEnd_toEndOf="parent"
