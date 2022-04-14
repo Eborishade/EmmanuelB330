@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_horizontal_list.xml",
+        "source": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/src/main/res/layout/activity_horizontal_list.xml"
+    },
+    {
+        "merged": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
+        "source": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/grid_list_item.xml",
+        "source": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/src/main/res/layout/grid_list_item.xml"
+    },
+    {
+        "merged": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_grid_list.xml",
+        "source": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/src/main/res/layout/activity_grid_list.xml"
+    },
+    {
+        "merged": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/vertical_horizontal_list_item.xml",
+        "source": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/src/main/res/layout/vertical_horizontal_list_item.xml"
+    },
+    {
+        "merged": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_vertical_list.xml",
+        "source": "/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/src/main/res/layout/activity_vertical_list.xml"
+    }
+]
