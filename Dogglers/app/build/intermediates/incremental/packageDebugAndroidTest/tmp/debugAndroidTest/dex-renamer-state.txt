@@ -1,0 +1,13 @@
+#Thu Apr 14 15:17:02 CDT 2022
+path.3=13/classes.dex
+path.2=12/classes.dex
+path.1=0/classes.dex
+path.0=classes.dex
+base.3=/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/13/classes.dex
+base.2=/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/12/classes.dex
+base.1=/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
+base.0=/home/kaeko/MEGA/College/Junior/Semester 2/Mobile App Dev/code/Github/EmmanuelB330/Dogglers/app/build/intermediates/dex/debugAndroidTest/mergeExtDexDebugAndroidTest/classes.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex

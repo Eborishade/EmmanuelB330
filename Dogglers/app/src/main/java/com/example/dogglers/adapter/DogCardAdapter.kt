@@ -83,7 +83,7 @@ class DogCardAdapter(
 
         //  Set the text for the current dog's age
         val resources = context?.resources
-        holder.ageView.text = dog.age
+        holder.ageView.text = "Age: "+dog.age
 
         /* Set the text for the current dog's hobbies by passing the hobbies to the
              R.string.dog_hobbies string constant.

@@ -40,6 +40,7 @@
             android:id="@+id/dog_image"
             android:layout_width="match_parent"
             android:layout_height="194dp"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -60,7 +61,7 @@
             android:paddingBottom="16dp"
             android:text="Tzeitel"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vh_imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/dog_image" />
 
         <TextView
             android:id="@+id/dog_age"
