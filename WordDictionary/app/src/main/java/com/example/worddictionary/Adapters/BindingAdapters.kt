@@ -1,8 +1,6 @@
 package com.example.worddictionary.Adapters
 
-import android.widget.ImageView
-import androidx.core.net.toUri
-import com.example.worddictionary.database.Word
+import com.example.worddictionary.Api.Word
 import org.json.JSONArray
 
 //@BindingAdapters("parseJson")
@@ -11,10 +9,10 @@ fun parseJsonToWord(wordId: String, jsonStr: String): Word {
     val entry = json.getJSONObject(0)
     val shortDef = entry.getJSONArray("shortdef")
 
-/*    val word : Word = when (shortDef.length()){
+    val word : Word = when (shortDef.length()){
         0 -> Word(wordId, "No definition available")
-        0 -> Word(wordId, "No definition available")
-        0 -> Word(wordId, "No definition available")
+        1 -> Word(wordId, shortDef.getString(0))
+        2 -> Word(wordId, shortDef.getString(0), shortDef.getString(1))
         else -> Word(
             wordId, shortDef.getString(0),
             shortDef.getString(1),
@@ -22,7 +20,5 @@ fun parseJsonToWord(wordId: String, jsonStr: String): Word {
         )
     }
     return word
-    
- */
-    return Word("test", "1", "1", "1")
+
 }

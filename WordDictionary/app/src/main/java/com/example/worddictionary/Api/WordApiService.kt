@@ -1,4 +1,4 @@
-package com.example.worddictionary.database
+package com.example.worddictionary.Api
 
 import retrofit2.Response
 import retrofit2.Retrofit
