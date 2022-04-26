@@ -1,4 +1,4 @@
-package com.example.worddictionary.Activities.AddWord
+package com.example.worddictionary.activities.addword
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

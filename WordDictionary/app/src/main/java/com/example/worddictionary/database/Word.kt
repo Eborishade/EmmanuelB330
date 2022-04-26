@@ -1,4 +1,4 @@
-package com.example.worddictionary.Api
+package com.example.worddictionary.database
 
 
 import androidx.room.ColumnInfo

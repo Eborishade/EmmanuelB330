@@ -1,6 +1,6 @@
-package com.example.worddictionary.Adapters
+package com.example.worddictionary.adapters
 
-import com.example.worddictionary.Api.Word
+import com.example.worddictionary.database.Word
 import org.json.JSONArray
 
 //@BindingAdapters("parseJson")

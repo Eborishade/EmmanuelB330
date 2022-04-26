@@ -1,4 +1,4 @@
-package com.example.worddictionary.Activities.Search
+package com.example.worddictionary.activities.search
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
