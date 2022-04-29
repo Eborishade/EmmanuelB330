@@ -18,5 +18,7 @@ data class Word (
     val shortDef2: String = "",
 
     @ColumnInfo(name = "short_definition_3")
-    val shortDef3: String = ""
+    val shortDef3: String = "",
+
+    var active: Boolean = true
 )

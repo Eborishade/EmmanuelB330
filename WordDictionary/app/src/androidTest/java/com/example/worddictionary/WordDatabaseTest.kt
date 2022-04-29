@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.android.trackmysleepquality.getOrAwaitValue
 import com.example.worddictionary.database.Word
 import com.example.worddictionary.database.WordDatabase
 import com.example.worddictionary.database.WordDatabaseDao
@@ -40,11 +41,10 @@ class WordDatabaseTest {
     @Before
     fun createDb() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        // Using an in-memory database because the information stored here disappears when the
-        // process is killed.
+
         db = Room.inMemoryDatabaseBuilder(context,
             WordDatabase::class.java).allowMainThreadQueries().build()
-        // Allowing main thread queries, just for testing.
+
         wordDao = db.wordDatabaseDao
     }
 
@@ -56,7 +56,7 @@ class WordDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetNight() = runBlocking {
+    fun insertAndCheckWord() = runBlocking {
         // Given
         val word = Word("leader", "the one in front")
 
@@ -64,92 +64,68 @@ class WordDatabaseTest {
         wordDao.insert(word)
 
         // Then
-        val thisWord = wordDao.getWord()
-        assertThat(thisWord?.wordId, `is`("leader"))
-    }
-
-    /*
-    @Test
-    @Throws(Exception::class)
-    fun getNightById() = runBlocking {
-        // Given
-        val night1 = SleepNight(sleepQuality = 8)
-
-        // When
-        sleepDao.insert(night1)
-
-        // Then
-        val tonight = sleepDao.get(1L)
-        assertThat(tonight?.sleepQuality, `is`(8))
+        val wordPresent = wordDao.checkWord("leader")
+        assertThat(wordPresent, `is`(true))
     }
 
     @Test
     @Throws(Exception::class)
-    fun getTonight() = runBlocking {
+    fun updateAndGetWord() = runBlocking {
         // Given
-        val night2 = SleepNight(sleepQuality = 7)
+        val word = Word("leader", "the one in front")
 
         // When
-        sleepDao.insert(night2)
+        wordDao.insert(word)
+        val updater = wordDao.getWord("leader")
+        updater.active = false
+        wordDao.updateWord(updater)
+
 
         // Then
-        val tonight = sleepDao.getTonight()
-        assertThat(tonight?.sleepQuality, `is`(7))
+        val activeList = wordDao.getActive().getOrAwaitValue()
+        assertThat(activeList.size, `is`(0))
     }
 
     @Test
     @Throws(Exception::class)
-    fun updateNight() = runBlocking {
+    fun getActiveInactiveAll() = runBlocking {
         // Given
-        val night3 = SleepNight(sleepQuality = 6)
+        val word = Word("leader", "the one in front")
+        val word2 = Word("middle", "the one in the center")
+        val word3 = Word("last", "the one at the end")
+        word.active = false
 
         // When
-        sleepDao.insert(night3)
-        val updater = sleepDao.getTonight()
-        updater?.sleepQuality = 5
-        sleepDao.update(updater!!)
+        wordDao.insert(word)
+        wordDao.insert(word2)
+        wordDao.insert(word3)
 
         // Then
-        val tonight = sleepDao.getTonight()
-        assertThat(tonight?.sleepQuality, `is`(5))
+        val inactiveList = wordDao.getInactive().getOrAwaitValue()
+        val activeList = wordDao.getActive().getOrAwaitValue()
+        val allWords = wordDao.getAllWords().getOrAwaitValue()
+
+        assertThat(inactiveList.size, `is`(1))
+        assertThat(activeList.size, `is`(1))
+        assertThat(allWords.size, `is`(3))
+
     }
+
 
     @Test
     @Throws(Exception::class)
     fun clear() = runBlocking {
         // Given
-        val night4 = SleepNight(sleepQuality = 4)
+        val word = Word("leader", "the one in front")
 
         // When
-        sleepDao.insert(night4)
-        sleepDao.clear()
+        wordDao.insert(word)
+        wordDao.clear()
 
         // Then
-        val allNights = sleepDao.getAllNights().getOrAwaitValue()
-        val size = allNights.size
+        val allWords = wordDao.getAllWords().getOrAwaitValue()
+        val size = allWords.size
         assertThat(size, `is`(0))
     }
 
-    @Test
-    @Throws(Exception::class)
-    fun getAllNights() = runBlocking {
-        // Given
-        val night = SleepNight(sleepQuality = 9)
-        val night1 = SleepNight(sleepQuality = 8)
-        val night2 = SleepNight(sleepQuality = 7)
-        val night3 = SleepNight(sleepQuality = 6)
-
-        //val nightList = listOf(night, night1, night2, night3)
-        // When
-        sleepDao.insert(night)
-        sleepDao.insert(night1)
-        sleepDao.insert(night2)
-        sleepDao.insert(night3)
-
-        // Then
-        val allNights = sleepDao.getAllNights().getOrAwaitValue()
-        val size = allNights.size
-        assertThat(size, `is`(4))
-    }
-*/
 }
