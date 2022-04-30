@@ -20,7 +20,7 @@ class AddWord : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.add_word_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_add_word, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

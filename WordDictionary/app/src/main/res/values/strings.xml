@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">WordDictionary</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_hint">Enter word to Search</string>
     <string name="search_button_text">Search</string>
     <string name="add_word_title">Add Word</string>
     <string name="add_button_text">Add Word</string>
     <string name="back_button_text">Back</string>
+    <string name="show_inactive">Show Inactive</string>
+    <string name="show_active">Show Active</string>
+    <string name="show_all">Show All</string>
+    <string name="add_word_menu">Add Word</string>
 </resources>
