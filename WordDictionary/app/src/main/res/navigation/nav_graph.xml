@@ -1,56 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ Copyright 2019, The Android Open Source Project
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  ~
-  -->
-
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/wordDict">
+    app:startDestination="@id/dictWordsFragment">
 
+    <fragment
+        android:id="@+id/dictWordsFragment"
+        android:name="com.example.worddictionary.activities.words.WordDictFragment"
+        android:label="Word Definitions"
+        tools:layout="@layout/fragment_word_dict">
+        <action
+            android:id="@+id/action_dictWordsFragment_to_searchWordFragment"
+            app:destination="@id/searchWordFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/wordDict"
-        android:name="com.example.worddictionary.activities.words.WordDict"
-        android:label="WordDict"
-        tools:layout="@layout/fragment_word_dict" >
+        android:id="@+id/searchWordFragment"
+        android:name="com.example.worddictionary.activities.search.SearchFragment"
+        android:label="Search Word Definition">
         <action
-            android:id="@+id/action_wordDict_to_search"
-            app:destination="@id/search" />
+            android:id="@+id/action_searchWordFragment_to_addWordFragment"
+            app:destination="@id/addWordFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/search"
-        android:name="com.example.worddictionary.activities.search.Search"
-        android:label="Search"
-        tools:layout="@layout/fragment_search" >
+        android:id="@+id/addWordFragment"
+        android:name="com.example.worddictionary.activities.addword.AddWordFragment"
+        android:label="Add Word Definition">
+        <argument
+            android:name="wordDef"
+            app:argType="com.example.worddictionary.database.Word"/>
         <action
-            android:id="@+id/action_search_to_addWord"
-            app:destination="@id/addWord" />
-    </fragment>
-    <fragment
-        android:id="@+id/addWord"
-        android:name="com.example.worddictionary.activities.addword.AddWord"
-        android:label="AddWord"
-        tools:layout="@layout/fragment_add_word" >
-        <action
-            android:id="@+id/action_addWord_to_search"
-            app:destination="@id/search"
-            app:popUpTo="@id/wordDict"
-            app:popUpToInclusive="false" />
+            android:id="@+id/action_addWordFragment_to_searchWordFragment"
+            app:destination="@id/dictWordsFragment"
+            app:popUpTo="@id/dictWordsFragment" />
     </fragment>
 </navigation>

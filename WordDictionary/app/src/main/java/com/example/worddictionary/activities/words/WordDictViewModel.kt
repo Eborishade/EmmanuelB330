@@ -1,51 +1,38 @@
 package com.example.worddictionary.activities.words
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
-import androidx.room.Query
 import com.example.worddictionary.database.Word
 import com.example.worddictionary.database.WordDatabaseDao
-import kotlinx.coroutines.launch
 
 class WordDictViewModel(val database: WordDatabaseDao,
                         application: Application) : AndroidViewModel(application) {
 
-    private var _showSnackbarEvent = MutableLiveData<Boolean>()
-    val showSnackBarEvent: LiveData<Boolean>
-        get() = _showSnackbarEvent
+    private val _activeWords = database.getActive()
+    val activeWords: LiveData<List<Word>>
+        get() = _activeWords
 
-    /* Handled by Search or other
-    suspend fun insert(word: Word) {
-        database.insert(word)
+    private val _inactiveWords = database.getInactive()
+    val inactiveWords: LiveData<List<Word>>
+        get() = _inactiveWords
+
+    private val _allWords = database.getAllWords()
+    val allWords: LiveData<List<Word>>
+        get() = _allWords
+
+    private val adapter = WordDictAdapter()
+
+    init {
+        adapter.submitList(allWords.value)
     }
 
-    suspend fun update(word: Word) {
-        database.updateWord(word)
-    }
+    fun changeFilter(filter: String) {
+        val adapter = WordDictAdapter()
+        Log.d("Change: DatabaseCheck", "All Words: ${allWords.value}")
 
-    suspend fun checkWord(key: String): Boolean {
-        return database.checkWord(key)
+        if (filter == "show_active"){adapter.submitList(activeWords.value) }
+        if (filter == "show_inactive"){adapter.submitList(inactiveWords.value)}
+        else { adapter.submitList(allWords.value) }
     }
-
-    suspend fun clear() {
-        database.clear()
-    }
-    */
-//on swipe, set active. on menu click, reset to display active/inactive
-    suspend fun getWord(key: String): Word {
-        return database.getWord(key)
-    }
-
-    suspend fun getActive(): LiveData<List<Word>>{
-        return database.getActive()
-    }
-
-    suspend fun getInactive(): LiveData<List<Word>>{
-        return database.getInactive()
-    }
-
-    suspend fun getAllWords(): LiveData<List<Word>>{
-        return database.getAllWords()
-    }
-
 }

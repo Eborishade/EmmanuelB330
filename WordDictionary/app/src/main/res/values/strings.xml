@@ -9,4 +9,6 @@
     <string name="show_active">Show Active</string>
     <string name="show_all">Show All</string>
     <string name="add_word_menu">Add Word</string>
+    <string name="database_error_message">Word is already in Dictionary...</string>
+    <string name="added_to_database_message">Word Added!</string>
 </resources>

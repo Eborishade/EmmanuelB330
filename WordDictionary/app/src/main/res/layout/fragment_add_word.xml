@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.worddictionary.activities.words.WordDictViewModel"/>
+            type="com.example.worddictionary.activities.addword.AddWordViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,50 +14,106 @@
         android:layout_height="match_parent"
         tools:context="com.example.android.marsrealestate.MainActivity">
 
+        <ImageView
+            android:id="@+id/word_image"
+            android:layout_width="0dp"
+            android:layout_height="266dp"
+            android:scaleType="fitXY"
+            app:imageName="@{viewModel.word.image}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
         <TextView
-            android:id="@+id/frag_title"
+            android:id="@+id/word_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/add_word_title"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
+            android:layout_marginTop="16dp"
+            android:text="@{viewModel.word.wordId}"
+            android:textColor="#de000000"
+            android:textSize="39sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/word_image"
+            tools:text="baseball" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/words_list"
+        <ScrollView
+            android:id="@+id/scroll_word_def"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:padding="6dp"
-            android:layout_marginBottom="20dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/back_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frag_title"
-            app:spanCount="1"
-            tools:itemCount="1"
-            tools:listitem="@layout/fragment_word_recyclable" />
+            app:layout_constraintTop_toBottomOf="@+id/word_id"
+            app:layout_constraintVertical_bias="0.10">
+
+            <LinearLayout
+                android:id="@+id/layout_word_defs"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scroll_word_def">
+
+
+                <TextView
+                    android:id="@+id/word_def1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.word.shortDef1}"
+                    android:textColor="#de000000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_word_defs"
+                    tools:text="A game played with a bat and ball." />
+
+                <TextView
+                    android:id="@+id/word_def2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.word.shortDef2}"
+                    android:textColor="#de000000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/word_def1"
+                    tools:text="Players run around four bases as fast as they can without being tagged out." />
+
+                <TextView
+                    android:id="@+id/word_def3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.word.shortDef3}"
+                    android:textColor="#de000000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/word_def2"
+                    tools:text="Pitchers take as much time as possible between pitches to slow the game down." />
+            </LinearLayout>
+        </ScrollView>
+
 
         <Button
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:text="@string/back_button_text"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/add_word_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/words_list" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/add_word_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_button_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/back_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/back_button"
-            app:layout_constraintTop_toBottomOf="@+id/words_list" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/back_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

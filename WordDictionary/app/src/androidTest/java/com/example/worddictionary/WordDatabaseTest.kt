@@ -106,7 +106,7 @@ class WordDatabaseTest {
         val allWords = wordDao.getAllWords().getOrAwaitValue()
 
         assertThat(inactiveList.size, `is`(1))
-        assertThat(activeList.size, `is`(1))
+        assertThat(activeList.size, `is`(2))
         assertThat(allWords.size, `is`(3))
 
     }

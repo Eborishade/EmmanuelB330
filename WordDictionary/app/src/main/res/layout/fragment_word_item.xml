@@ -1,12 +1,16 @@
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:layout_marginStart="8dp"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="4dp">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="word"
+            type="com.example.worddictionary.database.Word" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,8 +28,7 @@
             <TextView
                 android:id="@+id/word_id"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="[word]"
                 app:layout_constraintBottom_toTopOf="@+id/word_shortdef1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -36,8 +39,7 @@
             <TextView
                 android:id="@+id/word_shortdef1"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="[shortdef 1]"
                 app:layout_constraintBottom_toTopOf="@+id/word_shortdef2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,8 +50,7 @@
             <TextView
                 android:id="@+id/word_shortdef2"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="[shortdef 2]"
                 app:layout_constraintBottom_toTopOf="@+id/word_shortdef3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -60,8 +61,7 @@
             <TextView
                 android:id="@+id/word_shortdef3"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="[shortdef 3]"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -95,4 +95,4 @@
     </LinearLayout>
 
 
-</com.google.android.material.card.MaterialCardView>
+</layout>
