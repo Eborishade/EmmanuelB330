@@ -34,6 +34,7 @@
         <action
             android:id="@+id/action_addWordFragment_to_searchWordFragment"
             app:destination="@id/dictWordsFragment"
-            app:popUpTo="@id/dictWordsFragment" />
+            app:popUpTo="@id/dictWordsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

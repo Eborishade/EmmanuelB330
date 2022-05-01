@@ -41,7 +41,7 @@ class SearchViewModel(private val dao: WordDatabaseDao) : ViewModel() {
         // Search the API for the searchWord
         fun performWordSearch(searchWord: String) {
             Log.d(TAG, "Search for word $searchWord")
-            if (!searchWord.isBlank()) {
+            if (searchWord.isNotBlank()) {
                 viewModelScope.launch {
 
                     if (!isWordInDictionary(searchWord)) {

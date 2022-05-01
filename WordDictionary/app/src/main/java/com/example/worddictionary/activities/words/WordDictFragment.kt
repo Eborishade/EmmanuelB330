@@ -17,11 +17,12 @@ class WordDictFragment : Fragment() {
                                 savedInstanceState: Bundle?): View? {
 
         val binding = FragmentWordDictBinding.inflate(inflater)
+
         val application = requireNotNull(this.activity).application
         val dao = WordDatabase.getInstance(application).wordDatabaseDao
 
         val viewModelFactory = WordDictViewModelFactory(dao, application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(WordDictViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[WordDictViewModel::class.java]
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this

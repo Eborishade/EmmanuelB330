@@ -11,7 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.worddictionary.R
+import com.example.worddictionary.activities.words.WordDictAdapter
 import com.example.worddictionary.database.WordDatabase
+import com.example.worddictionary.databinding.FragmentSearchBinding
+import com.example.worddictionary.databinding.FragmentWordDictBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 
@@ -21,22 +24,24 @@ import com.google.android.material.textfield.TextInputLayout
 class SearchFragment : Fragment() {
 
     private val TAG = javaClass.simpleName
-    private lateinit var layout: View
     private lateinit var viewModel: SearchViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?): View {
+                              savedInstanceState: Bundle?): View {
 
-        layout = inflater.inflate(R.layout.fragment_search, container, false)
+        val binding = FragmentSearchBinding.inflate(inflater)
+
         val application = requireNotNull(activity).application
         val dao = WordDatabase.getInstance(application).wordDatabaseDao
-        val viewModelFactory = SearchViewModelFactory(dao)
 
+        val viewModelFactory = SearchViewModelFactory(dao)
         viewModel = ViewModelProvider(this, viewModelFactory)[SearchViewModel::class.java]
 
-        val searchButton = layout.findViewById<Button>(R.id.search_button)
-        searchButton.setOnClickListener {
-            wordSearch()
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
+        binding.searchButton.setOnClickListener {
+            wordSearch(binding)
         }
 
         // Observe the wordDef so that when a word is found (an exact match of the user input)
@@ -58,8 +63,8 @@ class SearchFragment : Fragment() {
         // returned by the API we can display this on the search word screen.
         viewModel.suggestedWords.observe(viewLifecycleOwner) { suggestedWords ->
             if (suggestedWords != null) {
-                val suggestedText = layout.findViewById<Button>(R.id.suggested_word_textview)
-                "Not Found. Suggested: $suggestedWords".also { suggestedText.text = it }
+                val suggestedText = binding.suggestedWordTextview
+                suggestedText.text = suggestedWords.toString()
                 suggestedText.isVisible = true
             }
         }
@@ -75,12 +80,12 @@ class SearchFragment : Fragment() {
             }
         }
 
-        return layout
+        return binding.root
     }
 
-    private fun wordSearch() {
+    private fun wordSearch(binding: FragmentSearchBinding) {
         // search for the word that the user entered
-        val searchInput: TextInputLayout = layout.findViewById(R.id.search_input)
+        val searchInput: TextInputLayout = binding.searchInput
         val searchWord = searchInput.editText?.text.toString()
 
         // The search is performed by the view model, because the view model
