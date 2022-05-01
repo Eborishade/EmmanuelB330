@@ -1,6 +1,9 @@
 package com.example.worddictionary
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
@@ -126,6 +129,30 @@ class WordDatabaseTest {
         val allWords = wordDao.getAllWords().getOrAwaitValue()
         val size = allWords.size
         assertThat(size, `is`(0))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun retrieve() = runBlocking {
+        // Given
+        val word = Word("leader", "the one in front")
+        val word2 = Word("middle", "the one in the center")
+        val word3 = Word("last", "the one at the end")
+        word.active = false
+
+        // When
+        wordDao.insert(word)
+        wordDao.insert(word2)
+        wordDao.insert(word3)
+
+        // Then
+        val retrieveList: List<Word> = wordDao.getAllWords().getOrAwaitValue()
+
+        assertThat(retrieveList.size, `is`(3))
+        //reverse alphabetical
+        assertThat(retrieveList[1], `is`(word))
+        assertThat(retrieveList[0], `is`(word2))
+        assertThat(retrieveList[2], `is`(word3))
     }
 
 }

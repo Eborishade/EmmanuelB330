@@ -2,7 +2,9 @@ package com.example.worddictionary.activities.words
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.worddictionary.R
@@ -27,7 +29,16 @@ class WordDictFragment : Fragment() {
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.wordsList.adapter = WordDictAdapter()
+
+        val adapter = WordDictAdapter()
+        binding.wordsList.adapter = adapter
+
+        viewModel.display.observe(viewLifecycleOwner) {
+            if (it != null) {
+                Log.d("Database Change", "displaying words: $it")
+                adapter.submitList(it)
+            }
+        }
 
         setHasOptionsMenu(true)
         return binding.root

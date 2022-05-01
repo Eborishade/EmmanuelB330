@@ -15,7 +15,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:baselineAligned="false"
         android:orientation="horizontal">
 
 
@@ -29,7 +28,7 @@
                 android:id="@+id/word_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="[word]"
+                android:text="@{word.wordId}"
                 app:layout_constraintBottom_toTopOf="@+id/word_shortdef1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +39,7 @@
                 android:id="@+id/word_shortdef1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="[shortdef 1]"
+                android:text="@{word.shortDef1}"
                 app:layout_constraintBottom_toTopOf="@+id/word_shortdef2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +50,7 @@
                 android:id="@+id/word_shortdef2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="[shortdef 2]"
+                android:text="@{word.shortDef2}"
                 app:layout_constraintBottom_toTopOf="@+id/word_shortdef3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +61,7 @@
                 android:id="@+id/word_shortdef3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="[shortdef 3]"
+                android:text="@{word.shortDef3}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

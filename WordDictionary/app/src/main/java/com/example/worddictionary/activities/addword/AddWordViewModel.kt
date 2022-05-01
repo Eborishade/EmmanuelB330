@@ -15,12 +15,6 @@ class AddWordViewModel(word: Word, application: Application) : AndroidViewModel(
 
     fun addWord(dao: WordDatabaseDao){
         viewModelScope.launch { dao.insert(word)
-            val allwords: LiveData<List<Word>> = dao.getAllWords() //LOG TESTING
-            Log.i("Database Change", "$word Inserted")
-            Log.i("Database Change", "Database size: ${allwords.value?.size}")
-            Log.i("Database Change", "Database: $allwords")
-            Log.i("Database Change", "Database val: ${allwords.value}")
-            Log.i("Database Change", "Database val wordid: ${allwords.value?.get(0)?.wordId}")
         }
     }
 }

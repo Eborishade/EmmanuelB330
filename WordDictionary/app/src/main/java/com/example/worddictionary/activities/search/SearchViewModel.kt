@@ -17,7 +17,6 @@ import kotlinx.coroutines.launch
 // The view model uses the database (dao) and the API to
 // access data for this fragment.
 class SearchViewModel(private val dao: WordDatabaseDao) : ViewModel() {
-        private val TAG = javaClass.simpleName
 
         // The fragment observes changes to the wordDef, so that when wordDef
         // is populated with a word found using the API it can navigate
@@ -40,23 +39,19 @@ class SearchViewModel(private val dao: WordDatabaseDao) : ViewModel() {
 
         // Search the API for the searchWord
         fun performWordSearch(searchWord: String) {
-            Log.d(TAG, "Search for word $searchWord")
             if (searchWord.isNotBlank()) {
                 viewModelScope.launch {
 
                     if (!isWordInDictionary(searchWord)) {
                         var response = DictionaryApi.retrofitService.getWord(searchWord)
-                        Log.d(TAG, response.body()!!.substring(0, 30))
                         val jsonString = response.body()!!
 
                         //if word found, return word
                         if (jsonString.startsWith("[{")) {
-                            Log.d(TAG, "parseJsonToWord")
                             _wordDef.value = parseJsonToWord(searchWord, jsonString)
 
                         //if word not found, return possibles
                         } else {
-                            Log.d(TAG, "TODO parseToStringList")
                             _suggestedWords.value = parseJsonToStringList(jsonString)
                         }
                     }
