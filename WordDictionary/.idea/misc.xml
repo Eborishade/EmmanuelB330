@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_connection_error.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/ic_connection_error.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/loading_animation.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/add_word_fragment.xml" value="0.15833333333333333" />
@@ -11,7 +12,7 @@
         <entry key="app/src/main/res/layout/fragment_add_word.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_word_dict.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_word_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_word_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_word_recyclable.xml" value="0.1" />
         <entry key="app/src/main/res/layout/search_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/word_dict_fragment.xml" value="0.1" />

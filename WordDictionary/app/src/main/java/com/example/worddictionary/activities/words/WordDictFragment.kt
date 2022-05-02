@@ -4,16 +4,21 @@ import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.worddictionary.R
+import com.example.worddictionary.database.Word
 import com.example.worddictionary.database.WordDatabase
 import com.example.worddictionary.databinding.FragmentWordDictBinding
+import com.google.android.material.snackbar.Snackbar
 
 class WordDictFragment : Fragment() {
 
     private lateinit var viewModel: WordDictViewModel
+    private lateinit var activeList: List<Word>
+    private lateinit var inactiveList: List<Word>
+    private lateinit var allWordList: List<Word>
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                 savedInstanceState: Bundle?): View? {
@@ -30,20 +35,48 @@ class WordDictFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val adapter = WordDictAdapter()
+        // Adapter & Element active/inactive ClickListener
+        val adapter = WordDictAdapter(WordDictAdapter.OnClickListener {
+            viewModel.toggleActive(it)
+
+            Snackbar.make(
+                requireActivity().findViewById(android.R.id.content),
+                getString(R.string.toggle_active_message),
+                Snackbar.LENGTH_SHORT).show()
+        })
         binding.wordsList.adapter = adapter
 
-        viewModel.display.observe(viewLifecycleOwner) {
+        // Database Observers
+        viewModel.activeWords.observe(viewLifecycleOwner) {
             if (it != null) {
-                Log.d("Database Change", "displaying words: $it")
-                adapter.submitList(it)
+                activeList = it
             }
+        }
+        viewModel.inactiveWords.observe(viewLifecycleOwner) {
+            if (it != null) {
+                inactiveList = it
+            }
+        }
+        viewModel.allWords.observe(viewLifecycleOwner) {
+            if (it != null) {
+                allWordList = it
+            }
+        }
+
+        // Menu filter Observer -runtime note: must select menu option for data to display
+        viewModel.filter.observe(viewLifecycleOwner) {
+            adapter.submitList(
+                when (it) {
+                    "show_active" -> activeList
+                    "show_inactive" -> inactiveList
+                    else -> allWordList
+                }
+            )
         }
 
         setHasOptionsMenu(true)
         return binding.root
     }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -55,6 +88,10 @@ class WordDictFragment : Fragment() {
         if (item.itemId == R.id.add_word_menu) {
             findNavController()
                 .navigate(WordDictFragmentDirections.actionDictWordsFragmentToSearchWordFragment())
+
+        } else if (item.itemId == R.id.clear_database_menu) {
+            viewModel.clearData()
+
         } else {
             viewModel.changeFilter(
                 when (item.itemId) {

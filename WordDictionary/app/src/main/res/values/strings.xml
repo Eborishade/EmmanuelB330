@@ -11,4 +11,6 @@
     <string name="add_word_menu">Add Word</string>
     <string name="database_error_message">Word is already in Dictionary...</string>
     <string name="added_to_database_message">Word Added!</string>
+    <string name="clear_data_menu">Clear Data</string>
+    <string name="toggle_active_message">Word state changed!</string>
 </resources>

@@ -23,17 +23,16 @@ fun bindImage(imgView: ImageView, imgName: String?) {
     // The imgName parameter will be auto-substituted in the imageUrl string
     val imageUrlString = "https://www.merriam-webster.com/assets/mw/static/art/dict/$imgName.gif"
     if (null != imgName) {
-        imgView.visibility = View.VISIBLE
         val imgUri = imageUrlString.toUri().buildUpon().scheme("https").build()
         Glide.with(imgView.context)
             .load(imgUri)
             .apply(
                 RequestOptions()
                     .placeholder(R.drawable.loading_animation)
-                    .error(R.drawable.ic_broken_image)
+                    .error(R.drawable.ic_connection_error)
             )
             .into(imgView)
     } else {
-        imgView.visibility = View.GONE
+        Glide.with(imgView.context).load(R.drawable.ic_broken_image).into(imgView)
     }
 }

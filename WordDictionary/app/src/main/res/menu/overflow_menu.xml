@@ -28,6 +28,9 @@
         android:id="@+id/show_inactive_menu"
         android:title="@string/show_inactive" />
     <item
+        android:id="@+id/clear_database_menu"
+        android:title="@string/clear_data_menu" />
+    <item
         android:id="@+id/add_word_menu"
         android:title="@string/add_word_menu" />
 </menu>

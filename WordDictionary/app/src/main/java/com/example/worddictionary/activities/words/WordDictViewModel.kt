@@ -4,24 +4,42 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.worddictionary.database.Word
 import com.example.worddictionary.database.WordDatabaseDao
+import kotlinx.coroutines.launch
 
 class WordDictViewModel(val database: WordDatabaseDao,
                         application: Application) : AndroidViewModel(application) {
 
-    private var activeWords = database.getActive()
-    private var inactiveWords = database.getInactive()
-    private var allWords = database.getAllWords()
+    private var _activeWords = database.getActive()
+    val activeWords: LiveData<List<Word>>
+        get() = _activeWords
 
-    private var _display = allWords
-    val display: LiveData<List<Word>>
-        get() = _display
+    private var _inactiveWords = database.getInactive()
+    val inactiveWords: LiveData<List<Word>>
+        get() = _inactiveWords
+
+    private var _allWords = database.getAllWords()
+    val allWords: LiveData<List<Word>>
+        get() = _allWords
+
+    private var _filter = MutableLiveData<String>()
+    val filter: LiveData<String>
+        get() = _filter
 
 
-    fun changeFilter(filter: String) {
-        _display = when (filter) {
-            "show_active" -> { activeWords }
-            "show_inactive" -> { inactiveWords }
-            else -> { allWords }
+    fun changeFilter(fltr: String) {
+        _filter.value = fltr
+    }
+
+    fun clearData(){
+        viewModelScope.launch {
+            database.clear()
+        }
+    }
+
+    fun toggleActive(word: Word) {
+        viewModelScope.launch {
+            word.active = !word.active
+            database.updateWord(word)
         }
     }
 }

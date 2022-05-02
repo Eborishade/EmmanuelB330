@@ -9,7 +9,8 @@ import com.example.worddictionary.database.Word
 import com.example.worddictionary.databinding.FragmentWordItemBinding
 
 
-class WordDictAdapter : ListAdapter<Word, WordDictAdapter.WordViewHolder>(DiffCallback) {
+class WordDictAdapter(private val onClickListener: OnClickListener ) : ListAdapter<Word,
+        WordDictAdapter.WordViewHolder>(DiffCallback) {
     class WordViewHolder(
         private var binding: FragmentWordItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -26,6 +27,9 @@ class WordDictAdapter : ListAdapter<Word, WordDictAdapter.WordViewHolder>(DiffCa
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val word = getItem(position)
         holder.bind(word)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(word)
+        }
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Word>() {
@@ -36,5 +40,9 @@ class WordDictAdapter : ListAdapter<Word, WordDictAdapter.WordViewHolder>(DiffCa
         override fun areContentsTheSame(oldItem: Word, newItem: Word): Boolean {
             return oldItem.wordId == newItem.wordId
         }
+    }
+
+    class OnClickListener(val clickListener: (word: Word) -> Unit) {
+        fun onClick(word: Word) = clickListener(word)
     }
 }

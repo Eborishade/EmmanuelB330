@@ -18,7 +18,8 @@
     <fragment
         android:id="@+id/searchWordFragment"
         android:name="com.example.worddictionary.activities.search.SearchFragment"
-        android:label="Search Word Definition">
+        android:label="Search Word Definition"
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchWordFragment_to_addWordFragment"
             app:destination="@id/addWordFragment" />
@@ -27,12 +28,13 @@
     <fragment
         android:id="@+id/addWordFragment"
         android:name="com.example.worddictionary.activities.addword.AddWordFragment"
-        android:label="Add Word Definition">
+        android:label="Add Word Definition"
+        tools:layout="@layout/fragment_add_word">
         <argument
             android:name="wordDef"
             app:argType="com.example.worddictionary.database.Word"/>
         <action
-            android:id="@+id/action_addWordFragment_to_searchWordFragment"
+            android:id="@+id/action_addWordFragment_to_DictWordsFragment"
             app:destination="@id/dictWordsFragment"
             app:popUpTo="@id/dictWordsFragment"
             app:popUpToInclusive="true" />

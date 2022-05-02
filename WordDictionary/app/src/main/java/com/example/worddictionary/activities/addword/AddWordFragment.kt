@@ -2,7 +2,6 @@ package com.example.worddictionary.activities.addword
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +34,7 @@ class AddWordFragment : Fragment() {
 
         // Navigates back to the search fragment
         binding.backButton.setOnClickListener {
-            findNavController().navigate(R.id.action_addWordFragment_to_searchWordFragment)
+            findNavController().navigate(R.id.action_addWordFragment_to_DictWordsFragment)
         }
 
 

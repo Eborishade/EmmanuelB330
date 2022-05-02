@@ -14,7 +14,6 @@ class AddWordViewModel(word: Word, application: Application) : AndroidViewModel(
 
 
     fun addWord(dao: WordDatabaseDao){
-        viewModelScope.launch { dao.insert(word)
-        }
+        viewModelScope.launch { dao.insert(word) }
     }
 }
