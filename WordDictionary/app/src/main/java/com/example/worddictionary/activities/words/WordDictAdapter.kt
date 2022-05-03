@@ -9,10 +9,11 @@ import com.example.worddictionary.database.Word
 import com.example.worddictionary.databinding.FragmentWordItemBinding
 
 
-class WordDictAdapter(private val onClickListener: OnClickListener ) : ListAdapter<Word,
+class WordDictAdapter(private val onClickListener: OnClickListener) : ListAdapter<Word,
         WordDictAdapter.WordViewHolder>(DiffCallback) {
     class WordViewHolder(
-        private var binding: FragmentWordItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        private var binding: FragmentWordItemBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(word: Word) {
             binding.word = word

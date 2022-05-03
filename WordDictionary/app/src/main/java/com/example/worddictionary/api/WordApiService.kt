@@ -2,10 +2,9 @@ package com.example.worddictionary.api
 
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.converter.scalars.ScalarsConverterFactory
-
 
 
 private const val BASE_URL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/"
@@ -19,7 +18,8 @@ interface WordApiService {
 }
 
 object DictionaryApi {
-    val retrofitService : WordApiService by lazy {
-        retrofit.create(WordApiService::class.java) }
+    val retrofitService: WordApiService by lazy {
+        retrofit.create(WordApiService::class.java)
+    }
 }
 

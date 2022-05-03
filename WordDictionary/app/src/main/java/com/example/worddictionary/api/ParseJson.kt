@@ -14,7 +14,7 @@ fun parseJsonToWord(wordId: String, jsonStr: String): Word {
         img = entry.getJSONObject("art").getString("artid")
     }
 
-    val word : Word = when (shortDef.length()){
+    val word: Word = when (shortDef.length()) {
         0 -> Word(wordId, "No definition available")
         1 -> Word(wordId, shortDef.getString(0), image = img)
         2 -> Word(wordId, shortDef.getString(0), shortDef.getString(1), image = img)
@@ -29,11 +29,11 @@ fun parseJsonToWord(wordId: String, jsonStr: String): Word {
 
 }
 
-fun parseJsonToStringList(jsonStr: String) : List<String> {
-        val json = JSONArray(jsonStr)
-        val wordList = mutableListOf<String>()
-        for (i in 0 until json.length()) {
-            wordList.add(i, json.getString(i))
-        }
-        return wordList
+fun parseJsonToStringList(jsonStr: String): List<String> {
+    val json = JSONArray(jsonStr)
+    val wordList = mutableListOf<String>()
+    for (i in 0 until json.length()) {
+        wordList.add(i, json.getString(i))
+    }
+    return wordList
 }

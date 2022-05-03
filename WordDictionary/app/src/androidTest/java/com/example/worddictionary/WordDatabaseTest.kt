@@ -1,9 +1,6 @@
 package com.example.worddictionary
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
@@ -14,14 +11,14 @@ import com.example.worddictionary.database.WordDatabase
 import com.example.worddictionary.database.WordDatabaseDao
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.`is`
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.junit.Rule
 
 
 /**
@@ -45,8 +42,10 @@ class WordDatabaseTest {
     fun createDb() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
 
-        db = Room.inMemoryDatabaseBuilder(context,
-            WordDatabase::class.java).allowMainThreadQueries().build()
+        db = Room.inMemoryDatabaseBuilder(
+            context,
+            WordDatabase::class.java
+        ).allowMainThreadQueries().build()
 
         wordDao = db.wordDatabaseDao
     }

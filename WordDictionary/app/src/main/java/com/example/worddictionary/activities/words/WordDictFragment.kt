@@ -2,7 +2,6 @@ package com.example.worddictionary.activities.words
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -20,8 +19,10 @@ class WordDictFragment : Fragment() {
     private lateinit var allWordList: List<Word>
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                                savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         val binding = FragmentWordDictBinding.inflate(inflater)
 
@@ -42,7 +43,8 @@ class WordDictFragment : Fragment() {
             Snackbar.make(
                 requireActivity().findViewById(android.R.id.content),
                 getString(R.string.toggle_active_message),
-                Snackbar.LENGTH_SHORT).show()
+                Snackbar.LENGTH_SHORT
+            ).show()
         })
         binding.wordsList.adapter = adapter
 

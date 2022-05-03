@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.example.worddictionary.activities.words.WordDictViewModel"/>
+            type="com.example.worddictionary.activities.words.WordDictViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,22 +1,12 @@
 package com.example.worddictionary.activities
 
-import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.worddictionary.R
-import com.example.worddictionary.activities.words.WordDictAdapter
-import com.example.worddictionary.database.Word
 
-
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Word>?) {
-    val adapter = recyclerView.adapter as WordDictAdapter
-    adapter.submitList(data)
-}
 
 @BindingAdapter("imageName")
 fun bindImage(imgView: ImageView, imgName: String?) {

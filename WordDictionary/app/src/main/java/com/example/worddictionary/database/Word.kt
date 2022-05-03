@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "word_dictionary_table")
 @Parcelize
-data class Word (
+data class Word(
     @PrimaryKey(autoGenerate = false)
     val wordId: String,
     val shortDef1: String,

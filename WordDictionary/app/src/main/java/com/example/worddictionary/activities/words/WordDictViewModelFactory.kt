@@ -7,7 +7,8 @@ import com.example.worddictionary.database.WordDatabaseDao
 
 class WordDictViewModelFactory(
     private val dataSource: WordDatabaseDao,
-    private val application: Application) : ViewModelProvider.Factory {
+    private val application: Application
+) : ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

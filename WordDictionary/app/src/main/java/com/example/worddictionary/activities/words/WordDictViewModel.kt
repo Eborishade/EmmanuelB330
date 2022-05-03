@@ -6,8 +6,10 @@ import com.example.worddictionary.database.Word
 import com.example.worddictionary.database.WordDatabaseDao
 import kotlinx.coroutines.launch
 
-class WordDictViewModel(val database: WordDatabaseDao,
-                        application: Application) : AndroidViewModel(application) {
+class WordDictViewModel(
+    val database: WordDatabaseDao,
+    application: Application
+) : AndroidViewModel(application) {
 
     private var _activeWords = database.getActive()
     val activeWords: LiveData<List<Word>>
@@ -30,7 +32,7 @@ class WordDictViewModel(val database: WordDatabaseDao,
         _filter.value = fltr
     }
 
-    fun clearData(){
+    fun clearData() {
         viewModelScope.launch {
             database.clear()
         }

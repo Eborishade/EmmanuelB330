@@ -1,20 +1,16 @@
 package com.example.worddictionary.activities.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.worddictionary.R
-import com.example.worddictionary.activities.words.WordDictAdapter
 import com.example.worddictionary.database.WordDatabase
 import com.example.worddictionary.databinding.FragmentSearchBinding
-import com.example.worddictionary.databinding.FragmentWordDictBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 
@@ -23,11 +19,12 @@ import com.google.android.material.textfield.TextInputLayout
 // user input and data changes through observation of view model data changes.
 class SearchFragment : Fragment() {
 
-    private val TAG = javaClass.simpleName
     private lateinit var viewModel: SearchViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         val binding = FragmentSearchBinding.inflate(inflater)
 
@@ -52,7 +49,6 @@ class SearchFragment : Fragment() {
                     .navigate(
                         SearchFragmentDirections.actionSearchWordFragmentToAddWordFragment(word)
                     )
-                Log.d(TAG, "Observed ${viewModel.wordDef.value}")
                 // This sets the wordDef property to null so that the observer doesn't get notified
                 // again when navigating back to the search screen
                 viewModel.resetWordDef()
